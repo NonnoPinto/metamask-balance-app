@@ -1,3 +1,5 @@
+This project create an easy login page to access a Metamask account and display balance.
+
 # MetamaskBalanceApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
