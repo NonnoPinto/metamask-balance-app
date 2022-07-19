@@ -1,0 +1,51 @@
+.titolo{
+  text-align: center
+}
+
+.container{
+  position: relative;
+}
+
+.enableEthereumButton{
+  position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-110%, 50%);
+  height: 50px;
+  width: 300px;
+  text-size-adjust: auto;
+  font-size: 20px;
+}
+
+.showMyBalance{
+  position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(10%, 50%);
+  height: 50px;
+  width: 300px;
+  text-size-adjust: auto;
+  font-size: 20px;
+}
+
+.account{
+  position: absolute;
+	top: 0%;
+	left: 10%;
+	transform: translate(20%, 160%);
+  height: 50px;
+  width: 300px;
+  text-size-adjust: auto;
+  font-size: 20px;
+}
+
+.balance{
+  position: absolute;
+	top: 0%;
+	left: 10%;
+	transform: translate(20%, 300%);
+  height: 50px;
+  width: 300px;
+  text-size-adjust: auto;
+  font-size: 20px;
+}
