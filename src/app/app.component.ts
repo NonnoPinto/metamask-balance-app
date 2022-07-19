@@ -13,28 +13,33 @@ export class AppComponent implements AfterViewInit{
 
   constructor() {}
 
-  metaAccess: any;
   access : any;
   ethereumButton : any;
   balanceButton : any;
   balance : any;
-  _balance : any;
+  //_balance : any; Variabile usata per (eventualmente) salvare il bilancio in decimali
   showAccount : any;
   showBalance : any;
 
   ngAfterViewInit(): void {
-    this.showAccount = document.querySelector('.showAccount');
+    //Binding bottoni
     this.showBalance = document.querySelector('.showBalance');
     this.ethereumButton = document.querySelector('.enableEthereumButton');
+    //Binding span
+    this.showAccount = document.querySelector('.showAccount');
     this.balanceButton = document.querySelector('.showMyBalance');
+    //event listener per i click sui bottoni
     this.ethereumButton.addEventListener("click", () => {this.getAccount();});
     this.balanceButton.addEventListener("click", () => {this.myGetBalance();});
   }
 
   async getAccount(){
     //-->Indirizzo<--
-    this.metaAccess= window;
-    this.access = await this.metaAccess.ethereum.request({method: 'eth_requestAccounts'});
+    //Il metodo commentato segue il codice della libreria di MetaMask
+    /* this.metaAccess= window;
+    this.access = await this.metaAccess.ethereum.request({method: 'eth_requestAccounts'}); */
+    //Il codice qui sotto esegue l'accesso seguendo la libreria web3.js
+    this.access = await this.web3.eth.requestAccounts();
     this.access = this.access[0];
     this.showAccount.innerHTML = this.access;
     console.log("Indirizzo " + this.access);
@@ -43,11 +48,10 @@ export class AppComponent implements AfterViewInit{
   async myGetBalance(){
     //-->Bilancio<--
     this.balance = await this.web3.eth.getBalance(this.access);
-    this._balance = this.web3.utils.fromWei(this.balance, "ether");
-    //_bal = new BigNumber(this.balance);
-    //this.balance = this.balance[0];
-    this.showBalance.innerHTML = this._balance;
-    console.log("Bilancio " + this._balance);
+    //Conversione non indispensabile
+    //this._balance = this.web3.utils.fromWei(this.balance, "ether");
+    this.showBalance.innerHTML = this.web3.utils.fromWei(this.balance, "ether");
+    console.log("Bilancio " + this.web3.utils.fromWei(this.balance, "ether"));
   }
 
 }
