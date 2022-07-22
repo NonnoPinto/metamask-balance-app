@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, HostListener, Injectable} from '@angular/core';
+import { AfterViewInit, Component} from '@angular/core';
 import Web3 from 'web3';
 
 @Component({
@@ -20,6 +20,7 @@ export class AppComponent implements AfterViewInit{
   //_balance : any; Variabile usata per (eventualmente) salvare il bilancio in decimali
   showAccount : any;
   showBalance : any;
+  connected : boolean = true;
 
   ngAfterViewInit(): void {
     //Binding bottoni
@@ -28,10 +29,22 @@ export class AppComponent implements AfterViewInit{
     //Binding span
     this.showAccount = document.querySelector('.showAccount');
     this.balanceButton = document.querySelector('.showMyBalance');
+    //verifico se sono già collegato
+
     //event listener per i click sui bottoni
     this.ethereumButton.addEventListener("click", () => {this.getAccount();});
     this.balanceButton.addEventListener("click", () => {this.myGetBalance();});
   }
+
+  //Vorrebbe in qualche modo verificare se si è già connessi all'apertura della pagina, senza dover cliccare sul bottone
+/*   checkConnection() : void {
+    this.accounts = this.web3.eth.getAccounts().then(console.log);
+    console.log("Lunghezza " + this.accounts.);
+    if (this.accounts.length > 0){
+      this.connected = false;
+      console.log("Ok, ho già un account");
+    }
+  } */
 
   async getAccount(){
     //-->Indirizzo<--
@@ -40,6 +53,7 @@ export class AppComponent implements AfterViewInit{
     this.access = await this.metaAccess.ethereum.request({method: 'eth_requestAccounts'}); */
     //Il codice qui sotto esegue l'accesso seguendo la libreria web3.js
     this.access = await this.web3.eth.requestAccounts();
+    this.connected = false;
     this.access = this.access[0];
     this.showAccount.innerHTML = this.access;
     console.log("Indirizzo " + this.access);

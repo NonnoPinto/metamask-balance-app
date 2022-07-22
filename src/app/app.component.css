@@ -10,7 +10,7 @@
   position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-110%, 50%);
+	transform: translate(-50%, 50%);
   height: 50px;
   width: 300px;
   text-size-adjust: auto;
@@ -21,14 +21,14 @@
   position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(10%, 50%);
+	transform: translate(-50%, 50%);
   height: 50px;
   width: 300px;
   text-size-adjust: auto;
   font-size: 20px;
 }
 
-.account{
+/* .account{
   position: absolute;
 	top: 0%;
 	left: 10%;
@@ -37,13 +37,13 @@
   width: 300px;
   text-size-adjust: auto;
   font-size: 20px;
-}
+} */
 
 .balance{
   position: absolute;
-	top: 0%;
-	left: 10%;
-	transform: translate(20%, 300%);
+	top: 10%;
+	left: 52%;
+	transform: translate(-50%, 180%);
   height: 50px;
   width: 300px;
   text-size-adjust: auto;

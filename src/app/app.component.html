@@ -1,14 +1,14 @@
-<h1 class="titolo">Login MetaMask</h1>
+<h1 class="titolo">Login MetaMask<br><br><h2 class="account"><span class="showAccount"></span></h2></h1>
 <div class="container">
-  <button mat-raised-button color="primary" class="enableEthereumButton">Connect to MetaMask</button>
 
-  <button mat-raised-button color="primary" class="showMyBalance">Show my balance</button>
+  <div [hidden]="!connected">
+    <button mat-raised-button color="primary" class="enableEthereumButton">Connect to MetaMask</button>
+  </div>
 
-  <!--<button mat-raised-button color="primary" class="test">test</button>-->
-
-  <h2 class="account">Account: <span class="showAccount"></span></h2>
-
-  <h2 class="balance">Balance: <span class="showBalance"></span></h2>
+  <div [hidden]="connected">
+    <button mat-raised-button color="primary" class="showMyBalance">Show my balance</button>
+    <h2 class="balance"><span class="showBalance"></span></h2>
+  </div>
 
 </div>
 
