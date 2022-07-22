@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
+import { interval } from 'rxjs';
 import Web3 from 'web3';
 
 @Component({
@@ -21,10 +22,12 @@ export class AppComponent implements AfterViewInit {
   showAccount: any;
   showBalance: any;
   connected: boolean = true;
+  sub : any;
 
   ngOnInit() {
-    //verifico se sono già collegato
     this.checkConnection();
+    //verifico periodicamente se sono già collegato
+    interval(2000).subscribe((val) => { this.checkConnection(); });
   }
 
   ngAfterViewInit(): void {
@@ -62,7 +65,7 @@ export class AppComponent implements AfterViewInit {
     this.balance = await this.web3.eth.getBalance(this.access);
     //Conversione non indispensabile
     //this._balance = this.web3.utils.fromWei(this.balance, "ether");
-    this.showBalance.innerHTML = this.web3.utils.fromWei(this.balance, 'ether');
+    this.showBalance.innerHTML = this.web3.utils.fromWei(this.balance, 'ether') + " ETH";
     console.log('Bilancio ' + this.web3.utils.fromWei(this.balance, 'ether'));
   }
 
@@ -73,13 +76,13 @@ export class AppComponent implements AfterViewInit {
 
   async handleAccountsChanged(accounts) {
     let currentAccount = null;
-
-    console.log(accounts);
+    //console.log(accounts);
 
     //se non sono collegato, mostro il pulsante di login
     if (accounts.length === 0) {
       //console.log("Non sei connesso");
       this.connected = true;
+      this.showBalance.innerHTML = "";
     }
     //altrimenti carico l'indirizzo
     else {
