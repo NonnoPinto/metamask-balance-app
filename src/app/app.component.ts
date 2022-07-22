@@ -22,7 +22,6 @@ export class AppComponent implements AfterViewInit {
   showAccount: any;
   showBalance: any;
   connected: boolean = true;
-  sub : any;
 
   ngOnInit() {
     this.checkConnection();
