@@ -14,6 +14,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor() {}
 
+  /* metaAccess: any; */
   access: any;
   ethereumButton: any;
   balanceButton: any;
